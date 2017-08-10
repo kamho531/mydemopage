@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lunch Checker</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .message {
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        angular.module('LunchCheck', [])
+            .controller('LCController', LCController)
+            .filter('color', colorFilter);
+        LCController.$inject = ['$scope','$filter'];
+        function LCController($scope, $filter) {
+            $scope.msg = "";
+            $scope.myStyle = "";
+            $scope.myBorderStyle = "";
+            $scope.displaymsg = function () {
+                var result = document.getElementById("lunch-menu").value;
+                var splitresult = result.split(",", 3);
+                if (result == "") {
+                    var msgcontent = "Please enter data first!";
+                    $scope.msg = $filter('uppercase')(msgcontent);
+                    $scope.myStyle = { color: 'red' };
+                    $scope.myBorderStyle = { 'border-color': 'red'};
+                } else if (result == splitresult) {                  
+                    $scope.msg = "Enjoy!";
+                    $scope.myStyle = { color: 'green' };
+                    $scope.myBorderStyle = { 'border-color': 'green' };                   
+                } else {
+                    $scope.msg = "Too much!";
+                    $scope.myStyle = { color: 'blue' };
+                    $scope.myBorderStyle = { 'border-color': 'blue' };
+                };
+                                
+            };
+        };
+
+       
+
+    </script>
+
+</head>
+<body ng-app="LunchCheck" ng-controller="LCController" >
+    <div class="container">
+        <h1>Lunch Checker</h1>
+        <div class="form-group" >
+            <input id="lunch-menu" type="text"  ng-style="myBorderStyle"
+                   placeholder="list comma separated dishes you usually have for lunch"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <button class="btn-default" ng-click="displaymsg()">Check If Too Much</button>
+        </div>
+        <div class="form-group message" ng-style="myStyle">
+            <!-- Your message can go here. -->         
+           {{msg}} 
+        </div>
+   
+    </div>
+   
+</body>
+</html>

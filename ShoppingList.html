@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My Shopping List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        li {
+            margin-bottom: 5px;
+            font-size: 1em;
+        }
+
+            li > button {
+                margin-left: 6px;
+            }
+
+        button > span {
+            color: green;
+        }
+
+        body {
+            font-size: 2.2em;
+            background-color:lightpink;
+            
+        }
+        .message {
+            color: red;
+            font-size: 1.4em;
+        }
+    </style>    
+    <script>
+         angular.module('ShoppingListApp', [])
+             .controller('ShoppingListAddController', ShoppingListAddController)
+             .controller('ShoppingListShowController', ShoppingListShowController)
+             .service('ShoppingListService', ShoppingListService);
+
+         ShoppingListAddController.$inject = ['ShoppingListService'];
+         function ShoppingListAddController(ShoppingListService) {
+             var itemAdder = this;
+
+             itemAdder.itemName = "";
+             itemAdder.itemQuantity = "";
+             itemAdder.counter = 0;
+             itemAdder.addItem = function () {                
+                 ShoppingListService.addItem(itemAdder.itemName, itemAdder.itemQuantity);
+                 itemAdder.counter = ShoppingListService.getCounter();
+             }
+             
+         };           
+         
+         ShoppingListShowController.$inject = ['ShoppingListService'];
+         function ShoppingListShowController(ShoppingListService) {
+             var showList = this;
+             showList.edititem = "";
+             
+             showList.items = ShoppingListService.getItems();
+             
+             
+             showList.removeItem = function (itemIndex) {
+                 ShoppingListService.removeItem(itemIndex);
+                 showList.counter = ShoppingListService.getCounter();
+             }
+         };
+
+
+         function ShoppingListService() {
+             var service = this;
+             
+             // List of shopping items
+             var items = [];
+             var counter = 0;
+
+             service.addItem = function (itemName, quantity) {
+                
+                 var item = {
+                     name: itemName,
+                     quantity: quantity
+                 }                               
+                 items.push(item);
+                 counter = counter + 1;
+             }
+
+             service.removeItem = function (itemIdex) {
+                
+                 items.splice(itemIdex, 1);
+                 counter = counter - 1;
+             }
+
+             service.getItems = function () {
+                 return items;
+             }
+
+             service.getCounter = function () {
+                 return counter;
+             }
+
+             
+             
+             
+         }
+
+            
+    </script>   
+</head>
+<body  ng-app='ShoppingListApp'>
+    <div class="container">
+        <div>
+            <h1>My Shopping List</h1>
+            Create, edit and check off your shopping list<br /><br />
+            <b>1.&nbsp;Create your shopping list</b><br />
+            Enter the item and quantity you want to shop, then press the button.<br />
+        </div>
+        <div ng-controller='ShoppingListAddController as itemAdder'>
+            <input type="text" ng-model="itemAdder.itemName" placeholder="item name">
+            <input type="text" ng-model="itemAdder.itemQuantity" placeholder="quantity">
+            <button ng-click="itemAdder.addItem();itemAdder.itemName = null;itemAdder.itemQuantity = null">Add Item To Shopping List</button><br /><br />
+            <div ng-if="itemAdder.counter==0" class="message">List is empty!!</div><br /><!--{{itemAdder.counter}}-->
+        </div>
+        <div ng-controller='ShoppingListShowController as showList'>
+            <b>2.&nbsp;Edit the item or quantity in your shopping List</b><br />
+            Choose which item to change in your shopping list<br />
+            <input type="text" ng-model="edititem" placeholder="enter item number" size="13"><br />
+            Enter new item name to your shopping list&nbsp;&nbsp;
+            <input type="text" ng-model="showList.items[edititem - 1].name"><br />
+            Enter new item quantity to your shopping list&nbsp;&nbsp;
+            <input type="text" ng-model="showList.items[edititem - 1].quantity" size="5"><br /><br />
+            <b>3.&nbsp;Check off the already bought items clicking the item's button</b><br /><br />
+            <ol>
+                <li ng-repeat="item in showList.items">
+                    Buy {{ item.quantity }} of {{ item.name }}(s)&nbsp;
+                    <button ng-click="showList.removeItem($index);" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span>Bought</button><br />
+                </li>
+            </ol>
+            <div ng-if="showList.counter==0" class="message">All items are bought!!</div>
+            <!--{{showList.counter}}-->
+        </div>
+            
+           
+            
+           
+         
+        
+               
+    </div>
+</body>
+</html>
