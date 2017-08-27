@@ -1,0 +1,44 @@
+﻿#header {
+    font-family:Arial;
+    font-size:xx-large;
+    color:blue;
+
+}
+
+#producttype, #productline, #linearfootage, #cornerunit, #cornerInput, #result, #Select1, #footageInput, #c-unit, #Button1, #res {
+    font-size: x-large;
+    font-family: Arial;
+    color:brown;
+
+}
+
+
+#radiobutton, #calculate  {
+    font-size: x-large;
+    font-family: Arial;
+    margin-left: 280px;
+}
+
+#myImage {
+    height: 200px;
+    width: 220px;
+    margin-left: 600px;
+   
+    
+}
+
+body {
+    background-color:blanchedalmond;
+    margin-left:50px;
+}
+
+#pricelist {
+    font-family:Arial;
+}
+
+
+
+
+
+
+

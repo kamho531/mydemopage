@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+ 
+<link href="StyleSheet.css" rel="stylesheet" />   
+
+<div id="header">Kitchen Decor Calculator</div>
+<p></p>
+
+<div id="producttype">
+<form>1. Select your product type:
+<select id="Select1" name="D1" onclick="return getProductType()">
+                    <option value="0">--Select Your Product--</option>
+                    <option value="1">Base Cabinets</option>
+                    <option value="2">Wall Cabinets</option>
+                    <option value="3">Counter Tops</option>
+</select>
+    
+</form>
+<img src="kitchens\corners.jpg" id="myImage" alt="photo" />
+<p id="p-type"></p>
+</div>
+       
+<script>
+    //var prodType = 0;
+    function getProductType() {
+        //prodType = document.getElementById("Select1").value;
+
+        var obj = document.getElementById("Select1");  //get product type and put it in obj
+        var pt = obj.options[obj.selectedIndex].value; // assign value into an variable
+        if (pt == 1) {                            
+            document.getElementById("myImage").src = "kitchens/base.jpg"; // if Base is selected, change the picture source to base
+            document.all.cornerunit.style.visibility = "visible";         // show option 4 when this option is selected
+            
+        }
+        else if (pt == 2) {                       
+            document.getElementById("myImage").src = "kitchens/wall.jpg"; // if Wall is selected, change the picture source to wall
+            document.all.cornerunit.style.visibility = "visible";         // show option 4 when this option is selected
+        }
+        else if (pt == 3) {                       
+            document.getElementById("myImage").src = "kitchens/counters.jpg"; // if Counter is selected, change the picture source to counters
+            document.all.cornerunit.style.visibility = "hidden";             // hide option 4 when this option is selected
+        }
+        return pt;
+
+    }
+</script>
+
+
+<div id="productline">2. Select the product line:</div>
+<div id="radiobutton">
+<input type="radio" name="browser" onclick="return getProductPrice1()" value="1" id="myRadio1"/>Empire Standard<br/>
+<input type="radio" name="browser" onclick="return getProductPrice2()" value="2" id="myRadio2"/>Kitchen Elite<br/>
+<input type="radio" name="browser" onclick="return getProductPrice3()" value="3" id="myRadio3"/>Gold Star Plus<br/>
+<p id="p-line"></p>
+</div>
+
+<script>
+    //var prodLine= 0;
+    //prices[][] = [ [a,b,c] , [a,b,c], [a,b,c], [a,b,c] ] ;
+
+    function getProductPrice1() {    // set different Empire Standard prices
+        //prodLine = opt;
+        var pt = getProductType();
+        document.getElementById("myImage").style.border = "solid thick blue"; // set border color of Empire Standard
+        if (pt == 1) {
+            productprice = 69.99; // set price if Base Cabinets are selected 
+        }
+        else if (pt == 2) {
+            productprice = 99.99;  // set price if Wall Cabinets are selected
+        }
+        else if (pt == 3) {
+            productprice = 30.99;  // set price if Counter Tops are selected
+        }
+        return productprice;
+    }
+
+    function getProductPrice2() {   // set different Kitchen Elite prices
+        
+        var pt = getProductType();
+        document.getElementById("myImage").style.border = "solid thick red";  // set border color of Kitchen Elite
+        if (pt == 1) {
+            var productprice = 79.00;  // set price if Base Cabinets are selected  
+        }
+        else if (pt == 2) {
+            var productprice = 179.00;  // set price if Wall Cabinets are selected
+        }
+        else if (pt == 3) {
+            var productprice = 189.99;  // set price if Counter Tops are selected
+        }
+        return productprice;
+    }
+
+    function getProductPrice3() {  // set different Gold Star Plus prices
+        
+        var pt = getProductType();
+        document.getElementById("myImage").style.border = "solid thick pink"  // set border color of Gold Star Plus
+        if (pt == 1) {
+            var productprice = 99.99;  // set price if Base Cabinets are selected 
+        }
+        else if (pt == 2) {
+            var productprice = 200.99;  // set price if Wall Cabinets are selected
+        }
+        else if (pt == 3) {
+            var productprice = 212.99;  // set price if Counter Tops are selected
+        }
+        return productprice;
+    }
+</script>
+
+<div id="linearfootage">3. Enter the linear footage
+<input type="number" id="footageInput" value=""/>     
+<p id="footage"></p>
+</div>
+
+<script>
+    function getFootage() {    // get linear footage input
+        var f = document.getElementById("footageInput").value;
+        return f;
+    }
+</script>
+
+
+<div id="cornerunit">4. If cabinets, how many corner units?
+<input type="number" id="cornerInput" value="" />
+<p id="c-unit"></p>
+</div>
+
+<script>
+    function getCornerunit() {   // get corner unit input
+        var c = document.getElementById("cornerInput").value;
+        return c;
+    }
+</script>
+
+
+<div id="calculate">Click the
+    <input id="Button1" type="button" value="calculate" onclick="return getResult()"/>
+    button
+   <p> </p>  
+</div>
+
+
+<div id="result">5. And see the results:&nbsp&nbsp&nbsp$
+<output id="res" name="myResult" />
+<p></p>
+</div>
+<br />
+<div id="pricelist">
+    <a style="text-decoration:none" href="pricelist.html" onclick="window.open('pricelist.html','newwindow','width=700,height=250');return false;">Click here to check the price list</a>
+
+</div>
+
+<br /><br />
+    <a style="text-decoration:none" href="../mydemopage.html">Back to homepage</a>
+
+<script>
+   
+    function getResult() {                 // Calculation of various results
+        var pt = getProductType();
+        var pp1 = getProductPrice1();
+        var pp2 = getProductPrice2();
+        var pp3 = getProductPrice3();
+        var f = getFootage();
+        var c = getCornerunit();
+        
+
+        //result = price[prodType][prodLine] * f + c * price[3][prodLine];
+
+        if (pt == 1) {
+            if (document.getElementById("myRadio1").checked == true) {
+                document.getElementById("res").innerHTML = ((pp1 * f) + (c * 50.99)).toFixed(2);
+            }
+            else if (document.getElementById("myRadio2").checked == true) {
+                document.getElementById("res").innerHTML = ((pp2 * f) + (c * 79.99)).toFixed(2);
+            }
+            else if (document.getElementById("myRadio3").checked == true) {
+                document.getElementById("res").innerHTML = ((pp3 * f) + (c * 89.99)).toFixed(2);
+            }
+        }
+        else if (pt == 2) {
+            if (document.getElementById("myRadio1").checked == true) {
+                document.getElementById("res").innerHTML = ((pp1 * f) + (c * 50.99)).toFixed(2);
+            }
+            else if (document.getElementById("myRadio2").checked == true) {
+                document.getElementById("res").innerHTML = ((pp2 * f) + (c * 79.99)).toFixed(2);
+            }
+            else if (document.getElementById("myRadio3").checked == true) {
+                document.getElementById("res").innerHTML = ((pp3 * f) + (c * 89.99)).toFixed(2);
+            }
+        }
+        else if (pt == 3) {
+            if (document.getElementById("myRadio1").checked == true) {
+                document.getElementById("res").innerHTML = (pp1 * f).toFixed(2);
+            }
+            else if (document.getElementById("myRadio2").checked == true) {
+                document.getElementById("res").innerHTML = (pp2 * f).toFixed(2);
+            }
+            else if (document.getElementById("myRadio3").checked == true) {
+                document.getElementById("res").innerHTML = (pp3 * f).toFixed(2);
+            }
+        }
+        else {
+            alert("You must make a selection");           // show error message when no selection is made
+        }
+    }
+
+</script>
+    
+</body>
+    
+</html>
