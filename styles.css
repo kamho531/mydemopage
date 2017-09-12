@@ -1,0 +1,82 @@
+﻿#hder-nav {
+    background-color: coral;
+    color: cyan;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 40px;
+    font-style: italic;
+   
+    
+}
+
+body {
+    background-color:aliceblue;
+}
+
+
+
+
+#apps {
+    text-align:center;   
+    font-size: x-large;
+    text-decoration: none;
+}
+
+    #apps a:hover {
+        color: red;
+        font-family: 'Bookman Old Style';
+        
+    }
+
+
+.row {
+    margin-bottom: 15px;
+    width: 100%;
+    
+}
+
+
+
+    .row div {
+        border: 1px solid blue;
+        background-color: aquamarine;
+        padding: 10px;
+        margin-right: 60px;
+        margin-bottom: 30px;
+        height: 120px;
+        text-align: center;
+        vertical-align: middle;
+        
+    }
+
+        .row div span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            vertical-align: middle;
+        }
+
+    #apps-tile {
+        margin-left:5px;
+    }
+
+#apps-message span {
+    width: auto;
+    font-size: x-large;
+    color: mediumvioletred;
+    margin: 20px;
+    padding: 20px;
+    
+}
+  
+
+#footer {
+    background: #ccc;
+    margin: 20px;
+    text-align: center;
+    clear: both;
+}
+
+
+
