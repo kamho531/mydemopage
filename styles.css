@@ -1,11 +1,13 @@
-﻿#hder-nav {
+﻿.page-header {
     background-color: coral;
     color: cyan;
     font-family: Geneva, Arial, Helvetica, sans-serif;
-    font-size: 40px;
+    font-size: 3rem;
     font-style: italic;
-   
-    
+    text-align: center;
+    vertical-align: middle;
+    padding: 1% 1% 1% 1%;
+    margin: 1% 1% 1% 1%;
 }
 
 body {
@@ -61,14 +63,16 @@ body {
         margin-left:5px;
     }
 
-#apps-message span {
-    width: auto;
-    font-size: x-large;
+#apps-message {
+    font-size: 200%;
     color: mediumvioletred;
-    margin: 20px;
-    padding: 20px;
-    
+    text-align: center;
 }
+
+    #apps-message a:hover {
+        color: deeppink;
+        font-family: 'Bookman Old Style';
+    }
   
 
 #footer {
