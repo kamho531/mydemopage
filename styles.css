@@ -31,8 +31,11 @@ body {
 
 
 .row {
-    margin-bottom: 15px;
-    width: 100%;
+    text-align: center;
+    font-size: 175%;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    color: purple;
+    margin: 1%;    
     
 }
 
@@ -69,7 +72,7 @@ body {
 }
 
     #apps-message a:hover {
-        color: deeppink;
+        color: red;
         font-family: 'Bookman Old Style';
     }
 
