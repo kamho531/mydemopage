@@ -73,11 +73,13 @@ body {
         color: deeppink;
         font-family: 'Bookman Old Style';
     }
-  
+
 
 #footer {
+    font-size: 125%;
     background: #ccc;
-    margin: 20px;
+    margin: 1%;
+    padding: 1%;
     text-align: center;
     clear: both;
 }
